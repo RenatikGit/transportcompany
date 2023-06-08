@@ -1,7 +1,8 @@
 import "./styles.css";
-import cube from './cube-svgrepo-com.svg'
+import cube from './cube-svgrepo-com.svg';
 import {createRef, useState} from "react";
 import ModalWindow from "../ModalWindow";
+import InputMask from "react-input-mask";
 
 export default function Main(){
 
@@ -22,6 +23,7 @@ export default function Main(){
     const cityFrom = createRef();
     const cityTo = createRef();
     const weight = createRef();
+
     const goToOrder = () => {
         setOrderStatus(1);
     };
@@ -61,6 +63,7 @@ export default function Main(){
         localStorage.setItem('values', JSON.stringify(values));
         setOrderStatus(2);
     };
+
 
 
     return(
@@ -109,7 +112,8 @@ export default function Main(){
                     <div className="orderForm">
                         <form onSubmit={handleSubmit}>
                             <div className="wrapper">
-                                <input type="number" required name="telnumber" value={values.telnumber} onChange={handleInputChange} placeholder="Номер телефона"/>
+                                <InputMask mask="+7 (999)-999-9999" required name="telnumber" value={values.telnumber} onChange={handleInputChange} placeholder="Номер телефона">
+                                </InputMask>
                             </div>
                             <div className="wrapper">
                                 <input type="text" required name="name" value={values.name} onChange={handleInputChange} placeholder="ФИО"/>
